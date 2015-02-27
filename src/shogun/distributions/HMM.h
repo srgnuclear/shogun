@@ -84,6 +84,9 @@ enum BaumWelchViterbiType
 
 
 /** @brief class Model */
+/**
+ * 	
+ */
 class Model
 {
 	public:
@@ -368,6 +371,16 @@ class Model
  * Several functions for tasks such as training,reading/writing models, reading observations,
  * calculation of derivatives are supplied.
  */
+
+/** @breif overview of all methods of CHMM class.
+ * @train - It takes training data as argument and returns whether training was successful or not. The data is expected to be of string type 	word and is trained using baum_welch_viterbi_train(BW_NORMAL).
+ * @initialize - It initializes variables, transition matrices, counts of observations, distribution of different states, probability of best 	path, various checks for up to date paths and path probabilities which are required in the algorithms included in HMM.
+ * @alloc_state_dependend_arrays - It allocates memory depending on number of states N to transition matrices, observation matrices, initial 	and end state distributions and returns of the allocation was successful or not.
+ * @free_state_dependend_arrays - It frees the memory allocated by the above method.
+ * @forward_comp && forward_comp_old - It gives probability of a state at a certain time, given the history of evidence. The goal of algorithm 	  is to compute the joint probability p(x_t,y_{1:t}). It takes advantage of the conditional independence rules of the hidden Markov model   	(HMM) to perform the calculation recursively (Dynamic programming).
+ * @backward_comp && backward_comp_old - It is the reverse of the forward algorithm. It calculates the sum-of-all-paths probability of starting at a character aligned to a state, and aligns the remainder of the sequence to the model. 
+ */
+
 class CHMM : public CDistribution
 {
 	private:
